@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -6,25 +7,20 @@ import Tasks from "./pages/Tasks";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
-function ProtectedRoute({ children }) {
-  const { user } = useContext(AuthContext);
-  return user ? children : <Navigate to="/" replace />;
-}
-
 export default function App() {
+  const { user } = useContext(AuthContext);
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route
-        path="/tasks"
-        element={
-          <ProtectedRoute>
-            <Tasks />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={!user ? <Login /> : <Navigate to="/tasks" />} />
+        <Route path="/register" element={!user ? <Register /> : <Navigate to="/tasks" />} />
+        <Route path="/tasks" element={user ? <Tasks /> : <Navigate to="/login" />} />
+        {/* opcional: ruta catch-all */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   );
 }

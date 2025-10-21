@@ -70,8 +70,8 @@ export default function TaskCard({ task, onDeleted, onToggled, onUpdated }) {
   };
 
   return (
-    <li className="flex justify-between items-start bg-white p-4 rounded shadow">
-      <div className="flex-1">
+    <li className="card fade-in flex justify-between items-start p-4">
+      <div className="animate-pulse space-y-2">
         {!editing ? (
           <>
             <h3
@@ -107,14 +107,14 @@ export default function TaskCard({ task, onDeleted, onToggled, onUpdated }) {
           <>
             <button
               onClick={startEdit}
-              className="text-sm px-3 py-1 border rounded hover:bg-gray-50"
+              className="btn text-sm px-3 py-1 border rounded hover:bg-gray-50"
               title="Editar"
             >
               Edit
             </button>
             <button
               onClick={toggle}
-              className="text-sm px-3 py-1 border rounded"
+              className="btn text-sm px-3 py-1 border rounded"
               title={task.completed ? "Desmarcar" : "Marcar como hecho"}
             >
               {task.completed ? "Undo" : "Done"}
@@ -133,14 +133,14 @@ export default function TaskCard({ task, onDeleted, onToggled, onUpdated }) {
               <button
                 onClick={saveEdit}
                 disabled={loading}
-                className="px-3 py-1 bg-blue-600 text-white rounded disabled:opacity-60"
+                className="btn px-3 py-1 bg-blue-600 text-white rounded disabled:opacity-60"
               >
                 Save
               </button>
               <button
                 onClick={cancelEdit}
                 disabled={loading}
-                className="px-3 py-1 border rounded"
+                className="btn px-3 py-1 border rounded"
               >
                 Cancel
               </button>
