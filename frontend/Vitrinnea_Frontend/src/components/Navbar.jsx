@@ -1,7 +1,7 @@
-// src/components/Navbar.jsx
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import logo from "../images/logo.webp"
 
 export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
@@ -10,15 +10,19 @@ export default function Navbar() {
     <header className="w-full bg-white/60 backdrop-blur-sm shadow-sm">
       <div className="container-sm flex items-center justify-between py-3">
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-primary-500 flex items-center justify-center text-white font-bold">V</div>
-          <div className="text-lg font-semibold">Vitrinnea</div>
+          <img
+            src={logo}
+            alt="Vitrinnea logo"
+            className="w-9 h-9 object-contain rounded-lg"
+          />
+          <span className="text-lg font-semibold text-gray-800">Vitrinnea</span>
         </Link>
 
         <nav className="flex items-center gap-3">
           {!user ? (
             <>
               <Link to="/login" className="px-3 py-1 text-sm text-primary-500">Login</Link>
-              <Link to="/register" className="btn btn-primary text-sm">Register</Link>
+              <Link to="/register" className="btn btn-primary text-sm px-3 py-1">Register</Link>
             </>
           ) : (
             <>

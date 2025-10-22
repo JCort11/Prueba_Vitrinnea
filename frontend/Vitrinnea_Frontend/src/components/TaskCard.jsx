@@ -1,4 +1,4 @@
-// src/components/TaskCard.jsx
+
 import { useState } from "react";
 import api from "../services/api";
 
@@ -34,7 +34,7 @@ export default function TaskCard({ task, onDeleted, onToggled, onUpdated }) {
       });
       setEditing(false);
       setError(null);
-      onUpdated && onUpdated(data); // pasa la tarea actualizada al padre
+      onUpdated && onUpdated(data);
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Error actualizando");
