@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import api from "../services/api";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
+import logo from "../images/logo.webp"
 
 export default function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -27,6 +28,11 @@ export default function Register() {
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-lg shadow-md w-80"
       >
+        <img
+                          src={logo}
+                          alt="Vitrinnea logo"
+                          className="mx-auto w-32 h-auto"
+                        />
         <h2 className="text-2xl font-bold mb-4 text-center">Crear cuenta</h2>
         {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
         <input
